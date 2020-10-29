@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div >
+<!-- Search form -->
+<form method="GET" action="">
+<div class="col-sm-6 col-sm-offest-3">
+<input class="form-control" type="text" name='q' placeholder="Search" aria-label="Search">  
+<input type="submit" value="Search">
+</div>
+</form>
+<br>
+<ul>
+    <li>
+      <a href="{% url 'uplude' %}">Upload File</a>
+    </li>
+
+  </ul>
+</div>
+<div>
+
+  <p>Uploaded files:</p>
+  <ul>
+    {% for obj in documents %}
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <a href="{{ obj.document.url }}">{{ obj.document.name }}</a>
+            <p class="card-text"> created by: {{ obj.user.email }}</p>
+          <p class="card-text"> <small>Uploaded at: {{ obj.uploaded_at }}</small></p>
+        </div>
+      </div>
+    {% endfor %}
+  </ul>
+</div>
+</div>
+{% endblock %}
